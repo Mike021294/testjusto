@@ -1,16 +1,24 @@
 package com.example.testjusto.background.result
 
-sealed class Result<out T : Any> {
+data class Result<out T>(val status: Status, val data: T?, val message: String?) {
 
-    data class Request(val any: Nothing?) : Result<Nothing>()
-    data class Success<out T : Any>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
+    enum class Status {
+        SUCCESS,
+        ERROR,
+        LOADING
+    }
 
-    override fun toString(): String {
-        return when (this) {
-            is Request -> "Request[any=$any]"
-            is Success<*> -> "Success[data=$data]"
-            is Error -> "Error[exception=${exception.message}]"
+    companion object {
+        fun <T> success(data: T): Result<T> {
+            return Result(Status.SUCCESS, data, null)
+        }
+
+        fun <T> error(message: String, data: T? = null): Result<T> {
+            return Result(Status.ERROR, data, message)
+        }
+
+        fun <T> loading(data: T? = null): Result<T> {
+            return Result(Status.LOADING, data, null)
         }
     }
 }

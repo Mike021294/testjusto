@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.testjusto.user.ui.viewmodel.MainSharedViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.testjusto.background.custom.CircleImageView
+            android:id="@+id/frg_user_photo_profile"
+            android:layout_width="150dp"
+
+            android:layout_height="150dp"
+            app:imageUrl="@{viewModel.user.data.results.get(0).picture.large}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"/>
+
+        <TextView
+            android:id="@+id/frg_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.user.data.results.get(0).name.toString()}"
+            app:layout_constraintTop_toBottomOf="@+id/frg_user_photo_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.03"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"/>
+
+        <TextView
+            android:id="@+id/frg_user_email_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: "
+            app:layout_constraintTop_toBottomOf="@+id/frg_user_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.03"
+            app:layout_constraintHorizontal_bias="0.1"/>
+
+        <TextView
+            android:id="@+id/frg_user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="mike021294@gmail.com"
+            android:text="@{viewModel.user.data.results.get(0).email}"
+            app:layout_constraintTop_toBottomOf="@+id/frg_user_name"
+            app:layout_constraintStart_toEndOf="@+id/frg_user_email_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.03" />
+
+        <TextView
+            android:id="@+id/frg_user_phone_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone: "
+            app:layout_constraintTop_toBottomOf="@+id/frg_user_email_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.03"
+            app:layout_constraintHorizontal_bias="0.1"/>
+
+        <TextView
+            android:id="@+id/frg_user_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="5579894642"
+            android:text="@{viewModel.user.data.results.get(0).phone}"
+            app:layout_constraintTop_toBottomOf="@+id/frg_user_email_label"
+            app:layout_constraintStart_toEndOf="@+id/frg_user_phone_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.03" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

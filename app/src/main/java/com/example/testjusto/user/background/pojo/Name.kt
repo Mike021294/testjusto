@@ -10,4 +10,8 @@ data class Name(
     var first: String?,
     @SerializedName("last")
     var last: String?
-)
+    ) {
+    override fun toString(): String {
+        return "$title $first $last"
+    }
+}
